@@ -1,5 +1,5 @@
 //Imports
 import "./style.css";
-import "./project.js";
+import Project from "./project.js";
 
 console.log("Webpack template running!");
