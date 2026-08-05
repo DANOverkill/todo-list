@@ -12,18 +12,11 @@ const Project = (name) => {
         todoList.push(Todo(name, dueDate));
     }; 
 
-    const removeTodo = (name) => {
-
-        todoList.forEach(name => {
-            let todoIndex = todoList.indexOf();
-            let todoName = todoList(todoIndex).name;
-            if (todoList.name == name) {
-                todoList.splice.todoIndex;
-            }
-            else if (todoList.indexOf === -1) {
-                return;
-            }
-        });
+    const removeTodo = (id) => {
+        const index = todoList.findIndex(todo => todo.id === id);
+        if (index !== -1) {
+            todoList.splice(index, 1);
+        }
     };
     
     //getters
@@ -39,9 +32,3 @@ const Project = (name) => {
 };
 
 export default Project; 
-
-
-// delete bellow
-const createTodo = (name, projectName, dueDate) => {
-    projectName.getTodoList().push(Todo(name, dueDate));
-};
