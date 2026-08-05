@@ -11,6 +11,20 @@ const Project = (name) => {
     const addTodo = (name, dueDate) => {
         todoList.push(Todo(name, dueDate));
     }; 
+
+    const removeTodo = (name) => {
+
+        todoList.forEach(name => {
+            let todoIndex = todoList.indexOf();
+            let todoName = todoList(todoIndex).name;
+            if (todoList.name == name) {
+                todoList.splice.todoIndex;
+            }
+            else if (todoList.indexOf === -1) {
+                return;
+            }
+        });
+    };
     
     //getters
     const getTodoList = () => todoList;
@@ -19,7 +33,8 @@ const Project = (name) => {
         name, 
         id, 
         getTodoList,
-        addTodo
+        addTodo,
+        removeTodo
     };
 };
 
