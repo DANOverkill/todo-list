@@ -18,6 +18,14 @@ const Project = (name) => {
             todoList.splice(index, 1);
         }
     };
+
+    const editTodo = (id, name, dueDate) => {
+        const oldTodoIndex = todoList.findIndex(todo => todo.id === id);
+        const newTodo = addTodo(name, dueDate);
+        if (oldTodoIndex !== -1) {
+            todoList.splice(oldTodoIndex, 1, addTodo(name, dueDate));
+        }
+    };
     
     //getters
     const getTodoList = () => todoList;
@@ -27,7 +35,8 @@ const Project = (name) => {
         id, 
         getTodoList,
         addTodo,
-        removeTodo
+        removeTodo,
+        editTodo
     };
 };
 
