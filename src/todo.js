@@ -6,24 +6,11 @@ const Todo = (name, dueDate) => {
     const id = createID();
     let completed = false;
 
-    //Methods
-    const setCompleted = () => {
-        if (completed === false) {
-            return completed = true;
-        } else if (completed === true) {
-            return completed = false;
-        }
-    };
-
-    //Getters
-    const getCompleted = () => completed;
-            
     return {
         name, 
         id,
         dueDate,
-        getCompleted,
-        setCompleted
+        completed
     };
 };
 
