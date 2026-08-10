@@ -25,8 +25,8 @@ const Project = (name) => {
             Object.assign(todo, updates);
         }
     };
-    
-    //getters
+
+    //Getters
     const getTodoList = () => todoList;
 
     return {
@@ -35,7 +35,7 @@ const Project = (name) => {
         getTodoList,
         addTodo,
         removeTodo,
-        editTodo
+        editTodo,
     };
 };
 
