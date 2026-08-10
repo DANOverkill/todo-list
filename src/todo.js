@@ -22,7 +22,7 @@ const Todo = (name, dueDate) => {
         name, 
         id,
         dueDate,
-        completed,
+        getCompleted,
         setCompleted
     };
 };
