@@ -3,6 +3,7 @@ import "./style.css";
 import Project from "./project.js";
 import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
+import { format } from "date-fns";
 
 console.log("Webpack template running!");
 
@@ -10,3 +11,4 @@ console.log("Webpack template running!");
 window.Project = Project;
 window.Todo = Todo;
 window.ProjectManager = ProjectManager;
+window.format = format;
