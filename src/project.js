@@ -8,8 +8,13 @@ const Project = (name) => {
     const id = createID();
 
     //Todo methods
-    const addTodo = (name, dueDate) => {
-        todoList.push(Todo(name, dueDate));
+    const addTodo = (name, info, dueDate) => {
+        if (info === '') {
+            let noInfo = '';
+            todoList.push(Todo(name, noInfo, dueDate));
+        } else {
+           todoList.push(Todo(name, info, dueDate));
+        };
     }; 
 
     const removeTodo = (id) => {

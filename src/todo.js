@@ -1,6 +1,6 @@
 import createID from "./utils/createID.js";
 
-const Todo = (name, dueDate) => {
+const Todo = (name, info ,dueDate) => {
 
     //declarations
     const id = createID();
@@ -9,6 +9,7 @@ const Todo = (name, dueDate) => {
     return {
         name, 
         id,
+        info,
         dueDate,
         completed
     };
