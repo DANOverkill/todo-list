@@ -19,7 +19,10 @@ const ProjectManager = () => {
         const index = projects.findIndex(project => project.id === id);
         if (id === undefined) {
             return getProjectsList();
-        } else {
+        } else if (index === -1){
+            return `ID ${id} does not exist. Please pass a valid ID`;
+        }
+        else {
             return getSpecificProject(index);
         };
     };
