@@ -5,16 +5,28 @@ const ProjectManager = () => {
 
     const projects = [];
 
+    //methods
     const createProject = (input) => {
         const newProjectName = Project(input);
         projects.push(newProjectName);
     };
 
-    const getProjects = () => projects;
+    //getters
+    const getProjectsList = () => projects;
+    const getSpecificProject = (i) => projects[i];
+
+    const getProject = (id) => {
+        const index = projects.findIndex(project => project.id === id);
+        if (id === undefined) {
+            return getProjectsList();
+        } else {
+            return getSpecificProject(index);
+        };
+    };
 
     return {
-        getProjects,
         createProject,
+        getProject
     }
 
 }
