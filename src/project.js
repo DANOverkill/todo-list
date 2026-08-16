@@ -36,7 +36,8 @@ const Project = (name) => {
 
     return {
         name, 
-        id, 
+        id,
+        todoList, 
         getTodoList,
         addTodo,
         removeTodo,

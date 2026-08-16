@@ -1,7 +1,7 @@
 //imports
 import Project from "./project.js";
 
-const ProjectManager = () => {
+const ProjectManager = (() => {
 
     const projects = [];
 
@@ -32,6 +32,6 @@ const ProjectManager = () => {
         getProject
     }
 
-}
+})();
 
 export default ProjectManager;
