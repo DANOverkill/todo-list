@@ -5,9 +5,8 @@ const setLocalStorage = (allProjects) => {
 
 
 //retreaves local storage
-const loadLocalStorage = (name) => {
-    //temp logic
-    console.log(localStorage.getItem(name))
+const loadLocalStorage = () => {
+    return JSON.parse(localStorage.getItem('userData'))
 };
 
 //export
