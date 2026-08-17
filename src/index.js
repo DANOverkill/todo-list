@@ -18,6 +18,23 @@ window.loadLocalStorage = loadLocalStorage;
 
 
 // =========== PAGE LOAD LOGIC =============//
+//DOM CACHE
+const newProject = document.querySelector('#newProject');
+
+//load page
+const manager = ProjectManager();
+window.manager = manager;
+
+newProject.addEventListener('click', () =>{
+    let userInput = prompt('Please name your new project'); 
+    if (userInput === "") {
+        return alert ('you MUST name your Project');
+    } else {
+        return manager.createProject(userInput);
+    }
+});
+
+
 
 // ***** IMPORTANT *******
 // This wont work because when pushing the loadLocalStorage into
