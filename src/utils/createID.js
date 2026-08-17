@@ -1,8 +1,8 @@
-    const createID = (ExistingID) => {
-      if(ExistingID === undefined){
+    const createID = (existingID) => {
+      if(existingID === undefined){
          return Math.floor(Math.random() * 10000);
       } else {
-         return ExistingID;
+         return existingID;
       };  
     };
 

@@ -6,8 +6,8 @@ const ProjectManager = () => {
     const projects = [];
 
     //methods
-    const createProject = (input, ExistingID) => {
-        const newProjectName = Project(input, ExistingID);
+    const createProject = (input, existingID) => {
+        const newProjectName = Project(input, existingID);
         projects.push(newProjectName);
     };
 

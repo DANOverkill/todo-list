@@ -1,11 +1,11 @@
 import createID from "./utils/createID.js";
 import Todo from "./todo.js";
 
-const Project = (name, ExistingID) => {
+const Project = (name, existingID) => {
 
     //declarations
     const todoList = [];
-    const id = createID(ExistingID);
+    const id = createID(existingID);
 
     //Todo methods
     const addTodo = (name, dueDate, info) => {
