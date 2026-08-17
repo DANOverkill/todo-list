@@ -5,6 +5,7 @@ import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
 import { format } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
+import { drawProjects } from "./domhandler.js";
 
 console.log("Webpack template running!");
 
@@ -30,7 +31,8 @@ newProject.addEventListener('click', () =>{
     if (userInput === "") {
         return alert ('you MUST name your Project');
     } else {
-        return manager.createProject(userInput);
+        manager.createProject(userInput);
+        drawProjects(manager.getProject())
     }
 });
 
