@@ -22,17 +22,13 @@ window.loadLocalStorage = loadLocalStorage;
 //DOM CACHE
 const newProject = document.querySelector('#newProject');
 
-//load page
-const manager = ProjectManager();
-window.manager = manager;
-
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
     if (userInput === "") {
         return alert ('you MUST name your Project');
     } else {
-        manager.createProject(userInput);
-        drawProjects(manager.getProject())
+        ProjectManager.createProject(userInput);
+        drawProjects(ProjectManager.getProject())
     }
 });
 
