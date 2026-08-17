@@ -1,19 +1,19 @@
 import createID from "./utils/createID.js";
 import Todo from "./todo.js";
 
-const Project = (name) => {
+const Project = (name, ExistingID) => {
 
     //declarations
     const todoList = [];
-    const id = createID();
+    const id = createID(ExistingID);
 
     //Todo methods
-    const addTodo = (name, info, dueDate) => {
-        if (info === '') {
+    const addTodo = (name, dueDate, info) => {
+        if (info === undefined) {
             let noInfo = '';
-            todoList.push(Todo(name, noInfo, dueDate));
+            todoList.push(Todo(name, dueDate, noInfo));
         } else {
-           todoList.push(Todo(name, info, dueDate));
+           todoList.push(Todo(name, dueDate, info));
         };
     }; 
 
@@ -37,7 +37,6 @@ const Project = (name) => {
     return {
         name, 
         id,
-        todoList, 
         getTodoList,
         addTodo,
         removeTodo,

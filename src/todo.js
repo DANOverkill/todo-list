@@ -1,10 +1,10 @@
 import createID from "./utils/createID.js";
 import { compareAsc, format } from "date-fns";
 
-const Todo = (name, info ,dueDate) => {
+const Todo = (name, dueDate, info, ExistingID) => {
 
     //declarations
-    const id = createID();
+    const id = createID(ExistingID);
     let completed = false;
 
     return {
