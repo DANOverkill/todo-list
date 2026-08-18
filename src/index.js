@@ -41,7 +41,7 @@ projectColumn.addEventListener('click', (event) => {
     const projectID = projectItem.dataset.projectID;
     const projectName = ProjectManager.getProject(Number(projectID)).name;
 
-    drawProjectMenu(projectTodoColumn, projectName);
+    drawProjectMenu(projectTodoColumn, projectName, projectID);
 });
 
 

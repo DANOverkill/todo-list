@@ -10,12 +10,12 @@ import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 const projectContent = document.querySelector('#project_content')
 
 //Draw functions
-const drawProjectMenu = (location, projectName) => {
+const drawProjectMenu = (location, projectName, projectID) => {
     const projectMenu = document.createElement('div');
     location.innerHTML = '';
     projectMenu.className = 'project-menu';
     projectMenu.innerHTML = `
-        <nav id="project_menue">
+        <nav id="${Number(projectID)}">
             <button id="newTodo">Add New Todo</button>
             <button id="editTodo">Edit Todo</button>
             <button id="deleteTodo">Delete Todo</button>
