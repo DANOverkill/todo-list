@@ -23,7 +23,7 @@ window.loadLocalStorage = loadLocalStorage;
 const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
-const addTodo = document.querySelector('#addTodo');
+const addTodoForm = document.querySelector('#addTodo-form');
 
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
@@ -45,9 +45,17 @@ projectColumn.addEventListener('click', (event) => {
     drawProjectMenu(projectTodoColumn, projectName, projectID);
 });
 
+if (document.querySelector('#addTodo')) {
+const addTodo = document.querySelector('#addTodo');
 addTodo.addEventListener('click', () => {
-     
-})
+    console.log('clicked')
+      if (addTodoForm.style.display === 'none') {
+    addTodoForm.style.display = 'block'; // Shows the form
+  } else {
+    addTodoForm.style.display = 'none';  // Hides the form
+  }
+});
+}
 
 
 
