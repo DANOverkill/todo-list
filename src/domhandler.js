@@ -40,11 +40,11 @@ const drawProjectMenu = (location, projectName, projectID) => {
 };
 
 const drawTodoList = (navID) => {
-    const projectID = navID;
-    const projectMenu = document.querySelector('.project-menu');
-    const projectTodoItem = document.createElement('div');
-
-    projectMenu.innerHTML = '';
+    const projectID = Number(navID);
+    const projectTodoContainer = document.querySelector('.todoList-container');
+    projectTodoContainer.innerHTML = '';
+    ProjectManager.getProject(projectID).addTodo(name, dueDate, info, id);
+    const todoLists = ProjectManager.getProject(projectID).getTodoList();
 
 };
 
