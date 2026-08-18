@@ -5,7 +5,7 @@ import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
 import { format } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
-import { drawProjects } from "./domhandler.js";
+import { drawProjects, drawProjectMenu } from "./domhandler.js";
 
 console.log("Webpack template running!");
 
@@ -20,6 +20,8 @@ window.loadLocalStorage = loadLocalStorage;
 
 // =========== PAGE LOAD LOGIC =============//
 //DOM CACHE
+const projectColumn = document.querySelector('#projects_column');
+const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 
 newProject.addEventListener('click', () =>{
@@ -30,6 +32,16 @@ newProject.addEventListener('click', () =>{
         ProjectManager.createProject(userInput);
         drawProjects(ProjectManager.getProject())
     }
+});
+
+projectColumn.addEventListener('click', (event) => {
+    const projectItem = event.target.closest('.project-item')
+    if (!projectItem) return;
+
+    const projectID = projectItem.dataset.projectID;
+    const projectName = ProjectManager.getProject(Number(projectID)).name;
+
+    drawProjectMenu(projectTodoColumn, projectName);
 });
 
 
