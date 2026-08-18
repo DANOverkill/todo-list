@@ -10,21 +10,6 @@ import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 const projectContent = document.querySelector('#project_content')
 
 //Draw functions
-const drawProjectMenu = (location, projectName, projectID) => {
-    const projectMenu = document.createElement('div');
-    location.innerHTML = '';
-    projectMenu.className = 'project-menu';
-    projectMenu.innerHTML = `
-        <nav id="${Number(projectID)}">
-            <button id="newTodo">Add New Todo</button>
-            <button id="editTodo">Edit Todo</button>
-            <button id="deleteTodo">Delete Todo</button>
-        </nav>
-        <p>all the todos from ${projectName} go here `;
-    
-    location.appendChild(projectMenu);
-};
-
 const drawProjects = (projects) => {
     projectContent.innerHTML = '';
 
@@ -39,6 +24,30 @@ const drawProjects = (projects) => {
     });
 };
 
+const drawProjectMenu = (location, projectName, projectID) => {
+    const projectMenu = document.createElement('div');
+    location.innerHTML = '';
+    projectMenu.className = 'project-menu';
+    projectMenu.innerHTML = `
+        <nav id="${Number(projectID)}">
+            <button id="addTodo">Add New Todo</button>
+            <button id="editTodo">Edit Todo</button>
+            <button id="deleteTodo">Delete Todo</button>
+        </nav>
+        <div class="todoList-container">all the todos from ${projectName} go here </div>`;
+    
+    location.appendChild(projectMenu);
+};
+
+const drawTodoList = (navID) => {
+    const projectID = navID;
+    const projectMenu = document.querySelector('.project-menu');
+    const projectTodoItem = document.createElement('div');
+
+    projectMenu.innerHTML = '';
+
+};
+
 //EXPORTS
 
-export {drawProjects, drawProjectMenu};
+export {drawProjects, drawProjectMenu, drawTodoList};

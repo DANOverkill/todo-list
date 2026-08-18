@@ -23,6 +23,7 @@ window.loadLocalStorage = loadLocalStorage;
 const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
+const addTodo = document.querySelector('#addTodo');
 
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
@@ -43,6 +44,10 @@ projectColumn.addEventListener('click', (event) => {
 
     drawProjectMenu(projectTodoColumn, projectName, projectID);
 });
+
+addTodo.addEventListener('click', () => {
+     
+})
 
 
 
