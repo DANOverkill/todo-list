@@ -45,9 +45,7 @@ projectColumn.addEventListener('click', (event) => {
     drawProjectMenu(projectTodoColumn, projectName, projectID);
 });
 
-if (document.querySelector('#addTodo')) {
-const addTodo = document.querySelector('#addTodo');
-addTodo.addEventListener('click', () => {
+if (addTodo) addTodo.addEventListener('click', () => {
     console.log('clicked')
       if (addTodoForm.style.display === 'none') {
     addTodoForm.style.display = 'block'; // Shows the form
@@ -55,7 +53,7 @@ addTodo.addEventListener('click', () => {
     addTodoForm.style.display = 'none';  // Hides the form
   }
 });
-}
+
 
 
 

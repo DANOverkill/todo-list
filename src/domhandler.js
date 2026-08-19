@@ -37,6 +37,9 @@ const drawProjectMenu = (location, projectName, projectID) => {
         <div class="todoList-container">all the todos from ${projectName} go here </div>`;
     
     location.appendChild(projectMenu);
+    const addTodo = document.querySelector('#addTodo');
+    
+    return addTodo;
 };
 
 const drawTodoList = (navID) => {
