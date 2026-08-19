@@ -56,11 +56,12 @@ projectTodoColumn.addEventListener('click', (event) => {
     };
 });
 
-submitTodoInfo.addEventListener('click', () => {
+addTodoForm.addEventListener('submit', (event) => {
+   event.preventDefault(); 
    if (getComputedStyle(addTodoForm).display === 'block') {
-      addTodoForm.style.display = 'none';
+    addTodoForm.style.display = 'none';
     }
-})
+});
 
 
 // ***** IMPORTANT *******
