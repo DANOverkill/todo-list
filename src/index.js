@@ -24,6 +24,7 @@ const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
+const submitTodoInfo = document.querySelector('#submitTodoInfo');
 
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
@@ -45,16 +46,21 @@ projectColumn.addEventListener('click', (event) => {
     drawProjectMenu(projectTodoColumn, projectName, projectID);
 });
 
-if (addTodo) addTodo.addEventListener('click', () => {
-    console.log('clicked')
-      if (addTodoForm.style.display === 'none') {
-    addTodoForm.style.display = 'block'; // Shows the form
-  } else {
-    addTodoForm.style.display = 'none';  // Hides the form
-  }
+projectTodoColumn.addEventListener('click', (event) => {
+  const addTodo = event.target.closest('#addTodo');
+  if (!addTodo) return;
+    if (getComputedStyle(addTodoForm).display === 'none') {
+      console.log('clicked');
+      // addTodoForm.style.display = 'block';
+      addTodoForm.style.display = 'block';;
+    };
 });
 
-
+submitTodoInfo.addEventListener('click', () => {
+   if (getComputedStyle(addTodoForm).display === 'block') {
+      addTodoForm.style.display = 'none';
+    }
+})
 
 
 // ***** IMPORTANT *******
