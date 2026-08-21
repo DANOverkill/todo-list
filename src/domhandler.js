@@ -58,9 +58,9 @@ const drawTodoList = (navID) => {
         todoItem.className = 'todo-item'
         todoItem.dataset.todoItemID = element.id;
         todoItem.innerHTML = `
-            <div class = "todoItem-name">${element.name} - </div>
-            <div class = "todoItem-dueDate">${element.dueDate}</div><br>
-            <div class = "todoItem-info">${element.info} - </div>
+            <div class = "todoItem-name">${element.name}</div>
+            <div class = "todoItem-dueDate">${element.dueDate}</div>
+            <div class = "todoItem-info">${element.info}</div>
             <form>
                 <label for="completed">Task Completed</label>
                 <input type="checkbox" id="completed" name="completed" value="Completed" ${element.completed ? 'checked' : ''}>
