@@ -3,9 +3,9 @@ import "./style.css";
 import Project from "./project.js";
 import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
-import { format } from "date-fns";
+import { format, toDate } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
-import { drawProjects, drawProjectMenu } from "./domhandler.js";
+import { drawProjects, drawProjectMenu, drawTodoList, addTodoListItem } from "./domhandler.js";
 
 console.log("Webpack template running!");
 
@@ -24,8 +24,8 @@ const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
-const submitTodoInfo = document.querySelector('#submitTodoInfo');
 
+//Event Listeners
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
     if (userInput === "") {
@@ -44,6 +44,7 @@ projectColumn.addEventListener('click', (event) => {
     const projectName = ProjectManager.getProject(Number(projectID)).name;
 
     drawProjectMenu(projectTodoColumn, projectName, projectID);
+    drawTodoList(projectID);
 });
 
 projectTodoColumn.addEventListener('click', (event) => {
@@ -57,10 +58,19 @@ projectTodoColumn.addEventListener('click', (event) => {
 });
 
 addTodoForm.addEventListener('submit', (event) => {
-   event.preventDefault(); 
-   if (getComputedStyle(addTodoForm).display === 'block') {
+    
+    const navElement = projectTodoColumn.querySelector('.project-menu nav');
+    const projectId = Number(navElement.id);
+
+    event.preventDefault(); 
+    if (getComputedStyle(addTodoForm).display === 'block') {
     addTodoForm.style.display = 'none';
     }
+    const todoName = document.getElementById('todoName').value;
+    const dueDate = document.getElementById('dueDate').value;
+    const todoInfo = document.getElementById('todoInfo').value;
+    addTodoListItem(projectId, todoName, dueDate, todoInfo)
+    drawTodoList(projectId);
 });
 
 

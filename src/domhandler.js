@@ -42,15 +42,36 @@ const drawProjectMenu = (location, projectName, projectID) => {
     return addTodo;
 };
 
+const addTodoListItem = (navID, todoName, todoDate, todoInfo, id) => {
+    const projectID = Number(navID);
+    ProjectManager.getProject(projectID).addTodo(todoName, todoDate, todoInfo, id);
+};
+
 const drawTodoList = (navID) => {
     const projectID = Number(navID);
+    const todoLists = ProjectManager.getProject(projectID).getTodoList();
     const projectTodoContainer = document.querySelector('.todoList-container');
     projectTodoContainer.innerHTML = '';
-    ProjectManager.getProject(projectID).addTodo(name, dueDate, info, id);
-    const todoLists = ProjectManager.getProject(projectID).getTodoList();
+
+    todoLists.forEach(element => {
+        const todoItem = document.createElement('div');
+        todoItem.className = 'todo-item'
+        todoItem.dataset.todoItemID = element.id;
+        todoItem.innerHTML = `
+            <div class = "todoItem-name">${element.name} - </div>
+            <div class = "todoItem-dueDate">${element.dueDate}</div><br>
+            <div class = "todoItem-info">${element.info} - </div>
+            <form>
+                <label for="completed">Task Completed</label>
+                <input type="checkbox" id="completed" name="completed" value="Completed" ${element.completed ? 'checked' : ''}>
+            <form>
+        `; 
+
+        projectTodoContainer.appendChild(todoItem)
+    });
 
 };
 
 //EXPORTS
 
-export {drawProjects, drawProjectMenu, drawTodoList};
+export {drawProjects, drawProjectMenu, drawTodoList, addTodoListItem};
