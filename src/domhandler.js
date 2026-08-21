@@ -34,7 +34,9 @@ const drawProjectMenu = (location, projectName, projectID) => {
             <button id="editTodo">Edit Todo</button>
             <button id="deleteTodo">Delete Todo</button>
         </nav>
-        <div class="todoList-container">all the todos from ${projectName} go here </div>`;
+        <div class ="project-name">${projectName}</div>
+        <div class="separator">------------------</div>
+        <div class="todoList-container"></div>`;
     
     location.appendChild(projectMenu);
     const addTodo = document.querySelector('#addTodo');
