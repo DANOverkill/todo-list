@@ -24,8 +24,10 @@ const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
+const editTodoForm = document.querySelector('#editTodo-form');
 
-//Event Listeners
+// ---------- Event Listeners --------------//
+// new project creation
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
     if (userInput === "") {
@@ -35,7 +37,7 @@ newProject.addEventListener('click', () =>{
         drawProjects(ProjectManager.getProject())
     }
 });
-
+//switch which project todos are being displayed
 projectColumn.addEventListener('click', (event) => {
     const projectItem = event.target.closest('.project-item')
     if (!projectItem) return;
@@ -47,13 +49,13 @@ projectColumn.addEventListener('click', (event) => {
     drawTodoList(projectID);
 });
 
+// Add Todo Button Logic
 projectTodoColumn.addEventListener('click', (event) => {
   const addTodo = event.target.closest('#addTodo');
   if (!addTodo) return;
     if (getComputedStyle(addTodoForm).display === 'none') {
       console.log('clicked');
-      // addTodoForm.style.display = 'block';
-      addTodoForm.style.display = 'block';;
+      addTodoForm.style.display = 'block';
     };
 });
 
@@ -71,6 +73,16 @@ addTodoForm.addEventListener('submit', (event) => {
     const todoInfo = document.getElementById('todoInfo').value;
     addTodoListItem(projectId, todoName, dueDate, todoInfo)
     drawTodoList(projectId);
+});
+
+//Edit Todo Item
+projectTodoColumn.addEventListener('click', (event) => {
+  const editTodo = event.target.closest('#editTodo');
+  if (!editTodo) return;
+    if (getComputedStyle(editTodoForm).display === 'none') {
+      console.log('clicked');
+      editTodoForm.style.display = 'block';
+    };
 });
 
 

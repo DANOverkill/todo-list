@@ -31,8 +31,6 @@ const drawProjectMenu = (location, projectName, projectID) => {
     projectMenu.innerHTML = `
         <nav id="${Number(projectID)}">
             <button id="addTodo">Add New Todo</button>
-            <button id="editTodo">Edit Todo</button>
-            <button id="deleteTodo">Delete Todo</button>
         </nav>
         <div class ="project-name">${projectName}</div>
         <div class="separator">------------------</div>
@@ -58,7 +56,7 @@ const drawTodoList = (navID) => {
     todoLists.forEach(element => {
         const todoItem = document.createElement('div');
         todoItem.className = 'todo-item'
-        todoItem.dataset.todoItemID = element.id;
+        todoItem.id = element.id;
         todoItem.innerHTML = `
             <div class = "todoItem-name">${element.name}</div>
             <div class = "todoItem-dueDate">${element.dueDate}</div>
@@ -66,7 +64,9 @@ const drawTodoList = (navID) => {
             <form>
                 <label for="completed">Task Completed</label>
                 <input type="checkbox" id="completed" name="completed" value="Completed" ${element.completed ? 'checked' : ''}>
-            <form>
+            </form><br>
+            <button type="button" id="editTodo">Edit Todo</button>
+            <button type="button" id="deleteTodo">Delete Todo</button>
         `; 
 
         projectTodoContainer.appendChild(todoItem)
