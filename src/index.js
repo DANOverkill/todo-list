@@ -5,7 +5,13 @@ import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
 import { format, toDate } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
-import { drawProjects, drawProjectMenu, drawTodoList, addTodoListItem } from "./domhandler.js";
+import { 
+        drawProjects, 
+        drawProjectMenu, 
+        drawTodoList, 
+        addTodoListItem, 
+        drawEditTodoForm
+        } from "./domhandler.js";
 
 console.log("Webpack template running!");
 
@@ -24,7 +30,7 @@ const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
-const editTodoForm = document.querySelector('#editTodo-form');
+const editTodoForm_containder = document.querySelector('#editTodoForm-container');
 
 // ---------- Event Listeners --------------//
 // new project creation
@@ -77,14 +83,41 @@ addTodoForm.addEventListener('submit', (event) => {
 
 //Edit Todo Item
 projectTodoColumn.addEventListener('click', (event) => {
-  const editTodo = event.target.closest('#editTodo');
-  if (!editTodo) return;
-    if (getComputedStyle(editTodoForm).display === 'none') {
-      console.log('clicked');
-      editTodoForm.style.display = 'block';
-    };
+    const editButton = event.target.closest('#editTodo');
+    if (!editButton) return;
+
+    const todoItem = editButton.closest('.todo-item');
+    drawEditTodoForm(todoItem.id);
 });
 
+editTodoForm_containder.addEventListener('submit', (event) => {
+    
+    event.preventDefault(); 
+    
+    const form = event.target;
+    const todoID = form.id;
+
+    const projectID = document.querySelector('.project-menu nav').id;
+
+
+    
+    const todoName = document.getElementById('todoName').value;
+    const dueDate = document.getElementById('dueDate').value;
+    const todoInfo = document.getElementById('todoInfo').value;
+
+    const updates = {
+        name:todoName, 
+        info:todoInfo, 
+        dueDate:dueDate
+    };
+
+
+    ProjectManager.getProject(Number(projectID)).editTodo(Number(todoID), updates);
+
+    drawTodoList(Number(projectID));
+
+    editTodoForm_containder.innerHTML = '';
+});
 
 // ***** IMPORTANT *******
 // This wont work because when pushing the loadLocalStorage into

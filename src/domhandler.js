@@ -8,6 +8,7 @@ import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 
 //DOM
 const projectContent = document.querySelector('#project_content')
+const editTodoForm_containder = document.querySelector('#editTodoForm-container');
 
 //Draw functions
 const drawProjects = (projects) => {
@@ -74,6 +75,23 @@ const drawTodoList = (navID) => {
 
 };
 
+const drawEditTodoForm = (todoID) => {
+    const todoForm = document.createElement('div');
+    // todoForm.id = todoID;
+    todoForm.innerHTML = `
+        <form class="editTodo-form" id="${todoID}">
+            <label for=todoName">Todo name:</label><br>
+            <input type="text" id="todoName" name="todoName"><br>
+            <label for="dueDate">Due Date:</label><br>
+            <input type="date" id="dueDate"><br>
+            <label for="todoInfo">Info:</label><br>
+            <input type="text" id="todoInfo" name="todoInfo"><br><br>
+            <input type="submit" value="Submit" id="submitTodoInfo">
+        </form>
+    `
+    return editTodoForm_containder.appendChild(todoForm);
+};
+
 //EXPORTS
 
-export {drawProjects, drawProjectMenu, drawTodoList, addTodoListItem};
+export {drawProjects, drawProjectMenu, drawTodoList, addTodoListItem, drawEditTodoForm};
