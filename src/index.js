@@ -12,6 +12,7 @@ import {
         addTodoListItem, 
         drawEditTodoForm
         } from "./domhandler.js";
+import todoEditUpdates from "./utils/todoEditUpdates.js";
 
 console.log("Webpack template running!");
 
@@ -98,19 +99,18 @@ editTodoForm_containder.addEventListener('submit', (event) => {
     const todoID = form.id;
 
     const projectID = document.querySelector('.project-menu nav').id;
-
-
     
     const todoName = document.getElementById('todoName').value;
     const dueDate = document.getElementById('dueDate').value;
     const todoInfo = document.getElementById('todoInfo').value;
 
-    const updates = {
+    const newTodo = {
         name:todoName, 
         info:todoInfo, 
         dueDate:dueDate
     };
-
+    const originalTodo = ProjectManager.getProject(Number(projectID)).getTodo(Number(todoID));
+    const updates = todoEditUpdates(originalTodo, newTodo);
 
     ProjectManager.getProject(Number(projectID)).editTodo(Number(todoID), updates);
 
