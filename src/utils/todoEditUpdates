@@ -1,7 +1,0 @@
-const todoEditUpdates = (input) => {
-    if (input !== '') {
-        return input;
-    }
-};
-
-export default todoEditUpdates;
