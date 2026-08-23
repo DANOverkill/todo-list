@@ -33,6 +33,18 @@ const Project = (name, existingID) => {
 
     //Getters
     const getTodoList = () => todoList;
+    
+    const getTodo = (id) => {
+        const index = todoList.findIndex(todo => todo.id === id);
+        if (id === undefined) {
+            return getTodoList();
+        } else if (index === -1){
+            return `ID ${id} does not exist. Please pass a valid ID`;
+        }
+        else {
+            return todoList[index];
+        };
+    }
 
     return {
         name, 
@@ -41,6 +53,7 @@ const Project = (name, existingID) => {
         addTodo,
         removeTodo,
         editTodo,
+        getTodo
     };
 };
 
