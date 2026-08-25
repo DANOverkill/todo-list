@@ -75,17 +75,19 @@ const drawTodoList = (navID) => {
 
 };
 
-const drawEditTodoForm = (todoID) => {
+const drawEditTodoForm = (todoID, projectID) => {
     const todoForm = document.createElement('div');
-    // todoForm.id = todoID;
+    const project = ProjectManager.getProject(projectID);
+    const todo = project.getTodo(Number(todoID));
+
     todoForm.innerHTML = `
         <form class="editTodo-form" id="${todoID}">
             <label for=todoName">Todo name:</label><br>
-            <input type="text" id="todoName" name="todoName"><br>
+            <input type="text" id="todoName" name="todoName" value="${todo.name}"><br>
             <label for="dueDate">Due Date:</label><br>
-            <input type="date" id="dueDate"><br>
+            <input type="date" id="dueDate" value="${todo.dueDate}"><br>
             <label for="todoInfo">Info:</label><br>
-            <input type="text" id="todoInfo" name="todoInfo"><br><br>
+            <input type="text" id="todoInfo" name="todoInfo" value="${todo.info}"><br><br>
             <input type="submit" value="Submit" id="submitTodoInfo">
         </form>
     `

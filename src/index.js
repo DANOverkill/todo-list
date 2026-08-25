@@ -86,9 +86,9 @@ addTodoForm.addEventListener('submit', (event) => {
 projectTodoColumn.addEventListener('click', (event) => {
     const editButton = event.target.closest('#editTodo');
     if (!editButton) return;
-
+    const projectID = Number(document.querySelector('.project-menu nav').id);
     const todoItem = editButton.closest('.todo-item');
-    drawEditTodoForm(todoItem.id);
+    drawEditTodoForm(todoItem.id, projectID);
 });
 
 editTodoForm_containder.addEventListener('submit', (event) => {
