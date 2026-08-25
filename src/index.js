@@ -119,6 +119,24 @@ editTodoForm_containder.addEventListener('submit', (event) => {
     editTodoForm_containder.innerHTML = '';
 });
 
+// check completed catch
+projectTodoColumn.addEventListener("change", (event) => {
+    const completedCheck = event.target.closest('#completed');
+    if (!completedCheck) return;
+
+    const projectID = Number(document.querySelector('.project-menu nav').id);
+    const todoID = Number((completedCheck.closest('.todo-item').id));
+    const completedStatus = ProjectManager.getProject(projectID).getTodo(todoID).completed;
+
+    if (completedStatus === false) {
+        ProjectManager.getProject(projectID).editTodo(todoID, {completed:true});
+        completedCheck.checked = true;
+    } else {
+        ProjectManager.getProject(projectID).editTodo(todoID, {completed:false});
+        completedCheck.checked = false;
+    }
+});
+
 // ***** IMPORTANT *******
 // This wont work because when pushing the loadLocalStorage into
 // ProjectsManager's projects array, we loose all our methods. 
