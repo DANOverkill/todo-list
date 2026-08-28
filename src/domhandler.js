@@ -30,11 +30,14 @@ const drawProjectMenu = (location, projectName, projectID) => {
     location.innerHTML = '';
     projectMenu.className = 'project-menu';
     projectMenu.innerHTML = `
-        <nav id="${Number(projectID)}">
-            <button id="addTodo">Add New Todo</button>
-        </nav>
         <div class ="project-name">${projectName}</div>
-        <div class="separator">------------------</div>
+        <div class="project-buttons">
+            <nav id="${Number(projectID)}">
+            <button type="button" id="addTodo">Add New Todo</button>
+            <button type="button" id="editProject">Edit</button>
+            <button type="button" id="deleteProject">Delete</button>
+            </nav>
+        </div>
         <div class="todoList-container"></div>`;
     
     location.appendChild(projectMenu);
