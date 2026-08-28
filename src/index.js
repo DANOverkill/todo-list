@@ -33,7 +33,9 @@ const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
 const editTodoForm_containder = document.querySelector('#editTodoForm-container');
 
-// ---------- Event Listeners --------------//
+// =========== Event Listeners =============//
+
+// --------- Projects Listenes -------------//
 // new project creation
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
@@ -82,6 +84,7 @@ addTodoForm.addEventListener('submit', (event) => {
     drawTodoList(projectId);
 });
 
+//---------- Todo Item Event Listeners -----------//
 //Edit Todo Item
 projectTodoColumn.addEventListener('click', (event) => {
     const editButton = event.target.closest('#editTodo');
@@ -119,7 +122,9 @@ editTodoForm_containder.addEventListener('submit', (event) => {
     editTodoForm_containder.innerHTML = '';
 });
 
-// check completed catch
+// Delete Todo
+
+// Check Completed Catch
 projectTodoColumn.addEventListener("change", (event) => {
     const completedCheck = event.target.closest('#completed');
     if (!completedCheck) return;
