@@ -11,6 +11,13 @@ const ProjectManager = (() => {
         projects.push(newProjectName);
     };
 
+    const removeProject = (id) => {
+        const index = projects.findIndex(project => project.id === id);
+        if (index !== -1) {
+            projects.splice(index, 1);
+        }
+    };
+
     //getters
     const getProjectsList = () => projects;
     const getSpecificProject = (i) => projects[i];
@@ -29,8 +36,9 @@ const ProjectManager = (() => {
 
     return {
         createProject,
-        getProject
-    }
+        getProject,
+        removeProject
+    };
 
 })();
 
