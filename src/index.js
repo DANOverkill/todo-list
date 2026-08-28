@@ -123,6 +123,14 @@ editTodoForm_containder.addEventListener('submit', (event) => {
 });
 
 // Delete Todo
+projectTodoColumn.addEventListener('click', (event) => {
+    const deleteTodo = event.target.closest('#deleteTodo');
+    if (!deleteTodo) return;
+    const projectID = Number(document.querySelector('.project-menu nav').id);
+    const todoItem = deleteTodo.closest('.todo-item');
+    ProjectManager.getProject(projectID).removeTodo(Number(todoItem.id));
+    drawTodoList(Number(projectID));
+});
 
 // Check Completed Catch
 projectTodoColumn.addEventListener("change", (event) => {
