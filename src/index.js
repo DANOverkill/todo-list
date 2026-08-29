@@ -31,11 +31,11 @@ const projectColumn = document.querySelector('#projects_column');
 const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
-const editTodoForm_containder = document.querySelector('#editTodoForm-container');
+const editTodoForm_container = document.querySelector('#editTodoForm-container');
 
 // =========== Event Listeners =============//
 
-// --------- Projects Listenes -------------//
+// --------- Projects Listeners -------------//
 // new project creation
 newProject.addEventListener('click', () =>{
     let userInput = prompt('Please name your new project'); 
@@ -46,6 +46,20 @@ newProject.addEventListener('click', () =>{
         drawProjects(ProjectManager.getProject())
     }
 });
+
+// Delete Project
+// projectColumn.addEventListener('click', (event) => {
+//     const projectItem = event.target.closest('.project-item')
+//     if (!projectItem) return;
+
+//     const projectID = projectItem.dataset.projectID;
+//     const projectName = ProjectManager.getProject(Number(projectID)).name;
+
+//     drawProjectMenu(projectTodoColumn, projectName, projectID);
+//     drawTodoList(projectID);
+// });
+
+
 //switch which project todos are being displayed
 projectColumn.addEventListener('click', (event) => {
     const projectItem = event.target.closest('.project-item')
@@ -58,6 +72,7 @@ projectColumn.addEventListener('click', (event) => {
     drawTodoList(projectID);
 });
 
+//---------- Todo Item Event Listeners -----------//
 // Add Todo Button Logic
 projectTodoColumn.addEventListener('click', (event) => {
   const addTodo = event.target.closest('#addTodo');
@@ -84,7 +99,6 @@ addTodoForm.addEventListener('submit', (event) => {
     drawTodoList(projectId);
 });
 
-//---------- Todo Item Event Listeners -----------//
 //Edit Todo Item
 projectTodoColumn.addEventListener('click', (event) => {
     const editButton = event.target.closest('#editTodo');
@@ -94,7 +108,7 @@ projectTodoColumn.addEventListener('click', (event) => {
     drawEditTodoForm(todoItem.id, projectID);
 });
 
-editTodoForm_containder.addEventListener('submit', (event) => {
+editTodoForm_container.addEventListener('submit', (event) => {
     
     event.preventDefault(); 
     
@@ -119,7 +133,7 @@ editTodoForm_containder.addEventListener('submit', (event) => {
 
     drawTodoList(Number(projectID));
 
-    editTodoForm_containder.innerHTML = '';
+    editTodoForm_container.innerHTML = '';
 });
 
 // Delete Todo

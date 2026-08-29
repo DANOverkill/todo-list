@@ -8,7 +8,7 @@ import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 
 //DOM
 const projectContent = document.querySelector('#project_content')
-const editTodoForm_containder = document.querySelector('#editTodoForm-container');
+const editTodoForm_container = document.querySelector('#editTodoForm-container');
 
 //Draw functions
 const drawProjects = (projects) => {
@@ -94,7 +94,7 @@ const drawEditTodoForm = (todoID, projectID) => {
             <input type="submit" value="Submit" id="submitTodoInfo">
         </form>
     `
-    return editTodoForm_containder.appendChild(todoForm);
+    return editTodoForm_container.appendChild(todoForm);
 };
 
 //EXPORTS
