@@ -30,13 +30,15 @@ const drawProjectMenu = (location, projectName, projectID) => {
     location.innerHTML = '';
     projectMenu.className = 'project-menu';
     projectMenu.innerHTML = `
-        <div class ="project-name">${projectName}</div>
-        <div class="project-buttons">
-            <nav id="${Number(projectID)}">
-            <button type="button" id="addTodo">Add New Todo</button>
-            <button type="button" id="editProject">Edit</button>
-            <button type="button" id="deleteProject">Delete</button>
-            </nav>
+        <div class="projectHeader-container">
+            <div class ="project-name">${projectName}</div>
+            <div class="project-buttons">
+                <nav id="${Number(projectID)}">
+                <button type="button" id="addTodo">Add New Todo</button>
+                <button type="button" id="editProject">Edit</button>
+                <button type="button" id="deleteProject">Delete</button>
+                </nav>
+            </div>
         </div>
         <div class="todoList-container"></div>`;
     

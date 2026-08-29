@@ -48,17 +48,6 @@ newProject.addEventListener('click', () =>{
 });
 
 // Delete Project
-// projectColumn.addEventListener('click', (event) => {
-//     const projectItem = event.target.closest('.project-item')
-//     if (!projectItem) return;
-
-//     const projectID = projectItem.dataset.projectID;
-//     const projectName = ProjectManager.getProject(Number(projectID)).name;
-
-//     drawProjectMenu(projectTodoColumn, projectName, projectID);
-//     drawTodoList(projectID);
-// });
-
 
 //switch which project todos are being displayed
 projectColumn.addEventListener('click', (event) => {
