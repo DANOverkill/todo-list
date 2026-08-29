@@ -1,21 +1,453 @@
- /* ===== RESET & GLOBALS ===== */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-body: #f3f4f6;
+  --bg-sidebar: #1f2937;
+  --bg-main: #ffffff;
+  --bg-card: #f9fafb;
+  --bg-hover: #e5e7eb;
+  --text-light: #f3f4f6;
+  --text-dark: #111827;
+  --text-muted: #6b7280;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --success: #10b981;
+  --border: #d1d5db;
+  --radius: 8px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-        body {
-            min-height: 100vh;
-        }
+/* ===== RESET & GLOBALS ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        img {
-            display: block;
-            max-width: 100%;
-        }
-/* ===== STYLE STARTS HERE ======*/
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-dark);
+  line-height: 1.5;
+  min-height: 100vh;
+
+  /* MAIN GRID LAYOUT */
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "sidebar main"
+    "footer footer";
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* ===== SIDEBAR (Left Column) ===== */
+#projects_column {
+  grid-area: sidebar;
+  background-color: var(--bg-sidebar);
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+  overflow-y: auto;
+  border-right: 1px solid #374151;
+}
+
+.page-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #374151;
+  letter-spacing: -0.025em;
+}
+
+#projects_menue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#projects_menue button {
+  background-color: var(--accent);
+  color: white;
+  width: 100%;
+}
+
+#projects_menue button:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Project list items */
+#project_content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-item {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  background-color: #374151;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  font-weight: 500;
+}
+
+.project-item:hover {
+  background-color: #4b5563;
+  transform: translateX(4px);
+}
+
+.project-item:active {
+  transform: translateX(2px);
+}
+
+.separator-div {
+  display: none;
+}
+
+/* ===== MAIN AREA (Right Column) ===== */
+#projectTodo-column {
+  grid-area: main;
+  background-color: var(--bg-main);
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Project Menu Header */
+.project-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.projectHeader-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+}
+
+.project-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.project-buttons nav {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+#addTodo {
+  background-color: var(--success);
+  color: white;
+}
+
+#addTodo:hover {
+  background-color: #059669;
+}
+
+#editProject {
+  background-color: var(--bg-hover);
+  color: var(--text-dark);
+  border: 1px solid var(--border);
+}
+
+#editProject:hover {
+  background-color: var(--border);
+}
+
+#deleteProject {
+  background-color: var(--danger);
+  color: white;
+}
+
+#deleteProject:hover {
+  background-color: var(--danger-hover);
+}
+
+/* Todo List Container */
+.todoList-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Individual Todo Items */
+.todo-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "name date completed completed"
+    "info info edit delete";
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Hide the stray <br> tag from domhandler.js so it doesn't create an extra grid cell */
+.todo-item > br {
+  display: none;
+}
+
+.todoItem-name {
+  grid-area: name;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.todoItem-dueDate {
+  grid-area: date;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: right;
+}
+
+.todoItem-info {
+  grid-area: info;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.todo-item form {
+  grid-area: completed;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.todo-item form input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Todo action buttons — each gets its own grid area so they don't overlap */
+.todo-item #editTodo {
+  grid-area: edit;
+  justify-self: end;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  background-color: var(--accent);
+  color: white;
+  margin-right: 0.25rem;
+}
+
+.todo-item #editTodo:hover {
+  background-color: var(--accent-hover);
+}
+
+.todo-item #deleteTodo {
+  grid-area: delete;
+  justify-self: start;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+.todo-item #deleteTodo:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* ===== ADD TODO FORM — MODAL OVERLAY ===== */
 #addTodo-form {
-    display: none;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 90%;
+  max-width: 420px;
+  box-shadow:
+    0 0 0 9999px rgba(0, 0, 0, 0.45),
+    0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+#addTodo-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--text-dark);
+}
+
+#addTodo-form input[type="text"],
+#addTodo-form input[type="date"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+#addTodo-form input[type="submit"] {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+#addTodo-form input[type="submit"]:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ===== EDIT TODO FORM — MODAL OVERLAY ===== */
+#editTodoForm-container {
+  display: none;
+}
+
+#editTodoForm-container:not(:empty) {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#editTodoForm-container > div {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.editTodo-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--text-dark);
+}
+
+.editTodo-form input[type="text"],
+.editTodo-form input[type="date"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+.editTodo-form input[type="submit"] {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.6rem 1.25rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.editTodo-form input[type="submit"]:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ===== FOOTER ===== */
+footer.watermark {
+  grid-area: footer;
+  background-color: var(--bg-sidebar);
+  color: #9ca3af;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  border-top: 1px solid #374151;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "sidebar"
+      "main"
+      "footer";
+  }
+
+  #projects_column {
+    border-right: none;
+    border-bottom: 1px solid #374151;
+    max-height: 40vh;
+  }
+
+  .todo-item {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas:
+      "name name name"
+      "date completed completed"
+      "info info info"
+      "edit delete delete";
+  }
+
+  .todo-item #editTodo {
+    justify-self: start;
+  }
+
+  .todo-item #deleteTodo {
+    justify-self: end;
+  }
+
+  #addTodo-form {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  #editTodoForm-container > div {
+    padding: 1.5rem;
+    width: 95%;
+  }
 }
