@@ -10,7 +10,8 @@ import {
         drawProjectMenu, 
         drawTodoList, 
         addTodoListItem, 
-        drawEditTodoForm
+        drawEditTodoForm,
+        drawEditProjectForm
         } from "./domhandler.js";
 import editUpdates from "./utils/editUpdates.js";
 
@@ -56,6 +57,14 @@ projectTodoColumn.addEventListener('click', (event) => {
     ProjectManager.removeProject(projectID);
     projectTodoColumn.innerHTML = '';
     drawProjects(ProjectManager.getProject());
+});
+
+// Edit Projects
+projectTodoColumn.addEventListener('click', (event) => {
+    const editProject = event.target.closest('#editProject');
+    if (!editProject) return;
+    const projectID = Number(document.querySelector('.project-menu nav').id);
+    drawEditProjectForm(projectID);
 });
 
 //switch which project todos are being displayed
