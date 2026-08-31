@@ -106,7 +106,8 @@ const drawEditProjectForm = (projectID) => {
     editProjectForm.innerHTML = `
         <form class="editProject-form" id="${project.id}">
             <label for=projectName">Project name:</label><br>
-            <input type="text" id="projectName" name="projectName" value="${project.name}">
+            <input type="text" id="projectName" name="projectName" value="${project.name}"><br>
+            <input type="submit" value="Submit" id="submitProjectInfo">
         </form>
     `
     return projectContent.appendChild(editProjectForm);
