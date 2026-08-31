@@ -18,6 +18,13 @@ const ProjectManager = (() => {
         }
     };
 
+    const editProject = (id, updates) => {
+        const project = projects.find(project => project.id === id);
+        if (project) {
+            Object.assign(project, updates);
+        }
+    };
+
     //getters
     const getProjectsList = () => projects;
     const getSpecificProject = (i) => projects[i];
@@ -37,7 +44,8 @@ const ProjectManager = (() => {
     return {
         createProject,
         getProject,
-        removeProject
+        removeProject,
+        editProject
     };
 
 })();
