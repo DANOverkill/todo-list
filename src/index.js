@@ -12,7 +12,7 @@ import {
         addTodoListItem, 
         drawEditTodoForm
         } from "./domhandler.js";
-import editUpdates from "./utils/todoEditUpdates.js";
+import editUpdates from "./utils/editUpdates.js";
 
 console.log("Webpack template running!");
 
