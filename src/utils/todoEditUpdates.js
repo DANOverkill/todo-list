@@ -1,4 +1,4 @@
-const todoEditUpdates = (objA, objB) => {
+const editUpdates = (objA, objB) => {
     const updates = {};
     Object.keys(objB).forEach(key => {
         if (objA[key] !== objB[key]) {
@@ -9,4 +9,4 @@ const todoEditUpdates = (objA, objB) => {
     return updates;
 };
 
-export default todoEditUpdates;
+export default editUpdates;
