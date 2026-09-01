@@ -308,15 +308,16 @@ button:active {
     0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-#addTodo-form label {
+/* ===== GENERIC FORM ELEMENTS ===== */
+form label {
   display: block;
   font-weight: 500;
   margin-bottom: 0.25rem;
   color: var(--text-dark);
 }
 
-#addTodo-form input[type="text"],
-#addTodo-form input[type="date"] {
+form input[type="text"],
+form input[type="date"] {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 0.75rem;
@@ -325,7 +326,7 @@ button:active {
   font-size: 0.95rem;
 }
 
-#addTodo-form input[type="submit"] {
+form input[type="submit"] {
   background-color: var(--accent);
   color: white;
   padding: 0.6rem 1.25rem;
@@ -335,7 +336,7 @@ button:active {
   cursor: pointer;
 }
 
-#addTodo-form input[type="submit"]:hover {
+form input[type="submit"]:hover {
   background-color: var(--accent-hover);
 }
 
@@ -365,35 +366,30 @@ button:active {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-.editTodo-form label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-  color: var(--text-dark);
+/* ===== EDIT PROJECT FORM — MODAL OVERLAY ===== */
+#editProjectForm-container {
+  display: none;
 }
 
-.editTodo-form input[type="text"],
-.editTodo-form input[type="date"] {
-  width: 100%;
-  padding: 0.5rem;
-  margin-bottom: 0.75rem;
+#editProjectForm-container:not(:empty) {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.45);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#editProjectForm-container > div {
+  background-color: var(--bg-main);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 0.95rem;
-}
-
-.editTodo-form input[type="submit"] {
-  background-color: var(--accent);
-  color: white;
-  padding: 0.6rem 1.25rem;
-  font-weight: 600;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-}
-
-.editTodo-form input[type="submit"]:hover {
-  background-color: var(--accent-hover);
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== FOOTER ===== */

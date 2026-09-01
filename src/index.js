@@ -34,6 +34,7 @@ const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
 const editTodoForm_container = document.querySelector('#editTodoForm-container');
 const projectContent = document.querySelector('#project_content');
+const editProjectForm_container = document.querySelector('#editProjectForm-container');
 
 // =========== Event Listeners =============//
 
@@ -64,11 +65,12 @@ projectTodoColumn.addEventListener('click', (event) => {
 projectTodoColumn.addEventListener('click', (event) => {
     const editProject = event.target.closest('#editProject');
     if (!editProject) return;
+    console.log("i got clicked");
     const projectID = Number(document.querySelector('.project-menu nav').id);
     drawEditProjectForm(projectID);
 });
 
-projectContent.addEventListener('submit', (event) => {
+editProjectForm_container.addEventListener('submit', (event) => {
     
     event.preventDefault(); 
     
@@ -88,7 +90,8 @@ projectContent.addEventListener('submit', (event) => {
 
     drawProjectMenu(projectTodoColumn, originalProject.name, projectID);
     drawTodoList(projectID);
-
+    drawProjects(ProjectManager.getProject());
+    document.querySelector('#editProjectForm-container').innerHTML = '';
 });
 
 //switch which project todos are being displayed
