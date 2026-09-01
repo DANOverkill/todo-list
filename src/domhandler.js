@@ -114,6 +114,26 @@ const drawEditProjectForm = (projectID) => {
     return editProjectForm_container.appendChild(editProjectForm);
 };
 
+const drawNewProjectForm = () => {
+    const newProjectForm = document.createElement('div');
+    
+    newProjectForm.innerHTML = `
+        <form class="editProject-form" id="newProjectForm">
+            <label for="projectName">Project name:</label><br>
+            <input type="text" id="projectName" name="projectName"><br>
+            <input type="submit" value="Submit" id="submitProjectInfo">
+        </form>
+    `
+    return editProjectForm_container.appendChild(newProjectForm);
+};
+
 //EXPORTS
 
-export {drawProjects, drawProjectMenu, drawTodoList, addTodoListItem, drawEditTodoForm, drawEditProjectForm};
+export {drawProjects, 
+        drawProjectMenu, 
+        drawTodoList, 
+        addTodoListItem, 
+        drawEditTodoForm, 
+        drawEditProjectForm,
+        drawNewProjectForm    
+    };

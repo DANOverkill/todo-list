@@ -11,7 +11,8 @@ import {
         drawTodoList, 
         addTodoListItem, 
         drawEditTodoForm,
-        drawEditProjectForm
+        drawEditProjectForm,
+        drawNewProjectForm
         } from "./domhandler.js";
 import editUpdates from "./utils/editUpdates.js";
 
@@ -39,15 +40,9 @@ const editProjectForm_container = document.querySelector('#editProjectForm-conta
 // =========== Event Listeners =============//
 
 // --------- Projects Listeners -------------//
-// new project creation
-newProject.addEventListener('click', () =>{
-    let userInput = prompt('Please name your new project'); 
-    if (userInput === "") {
-        return alert ('you MUST name your Project');
-    } else {
-        ProjectManager.createProject(userInput);
-        drawProjects(ProjectManager.getProject())
-    }
+//create new project
+newProject.addEventListener('click', () => {
+    drawNewProjectForm();
 });
 
 // Delete Project
@@ -69,28 +64,31 @@ projectTodoColumn.addEventListener('click', (event) => {
     const projectID = Number(document.querySelector('.project-menu nav').id);
     drawEditProjectForm(projectID);
 });
-
+// submid new project or edit project form
 editProjectForm_container.addEventListener('submit', (event) => {
     
     event.preventDefault(); 
     
     const form = event.target;
-    const projectID = Number(form.id);
-    const originalProject = ProjectManager.getProject(Number(projectID));
-
     const newProjectName = document.getElementById('projectName').value;
-
-    const newProject = {
-        name:newProjectName, 
-    };
     
-    const updates = editUpdates(originalProject, newProject);
+    if (newProjectName === '') {
+        return alert('You MUST name your project');
+    }
+    if (form.id === 'newProjectForm') {
+        ProjectManager.createProject(newProjectName);
+        drawProjects(ProjectManager.getProject());
+    } else {
+        const projectID = Number(form.id);
+        const originalProject = ProjectManager.getProject(Number(projectID));
+        const newProject = { name:newProjectName };
+        const updates = editUpdates(originalProject, newProject);
+        ProjectManager.editProject(projectID, updates);
+        drawProjectMenu(projectTodoColumn, originalProject.name, projectID);
+        drawTodoList(projectID);
+        drawProjects(ProjectManager.getProject());
+    }
 
-    ProjectManager.editProject(projectID, updates);
-
-    drawProjectMenu(projectTodoColumn, originalProject.name, projectID);
-    drawTodoList(projectID);
-    drawProjects(ProjectManager.getProject());
     document.querySelector('#editProjectForm-container').innerHTML = '';
 });
 
