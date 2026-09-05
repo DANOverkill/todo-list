@@ -1,12 +1,22 @@
+import ProjectManager from "../projectManager.js";
+
 // sets local storage 
-const setLocalStorage = (allProjects) => {
-    localStorage.setItem('userData', JSON.stringify(allProjects))
+const setLocalStorage = (projectID) => {
+    
+    let project = ProjectManager.getProject(projectID);
+    let projectData = {
+        name: project.name,
+        id: project.id,
+        todoList: project.getTodoList() 
+    };
+
+    localStorage.setItem(project.id, JSON.stringify(projectData))
 };
 
 
 //retreaves local storage
-const loadLocalStorage = () => {
-    return JSON.parse(localStorage.getItem('userData'))
+const loadLocalStorage = (storageID) => {
+    projectData = JSON.parse(localStorage.getItem('userData'))
 };
 
 //export
