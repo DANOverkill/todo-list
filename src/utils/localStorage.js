@@ -16,7 +16,20 @@ const setLocalStorage = (projectID) => {
 
 //retreaves local storage
 const loadLocalStorage = (storageID) => {
-    projectData = JSON.parse(localStorage.getItem('userData'))
+    const projectData =  JSON.parse(localStorage.getItem(storageID));
+    ProjectManager.createProject(projectData.name, projectData.id);
+    let todoList = projectData.todoList;
+    todoList.forEach(element => {
+        ProjectManager.
+        getProject(Number(storageID)).
+        addTodo(element.name, element.dueDate, element.info, Number(element.id));
+
+        if (element.completed === true) {
+            ProjectManager.
+            getProject(Number(storageID)).
+            editTodo(Number(element.id), {completed: element.completed});
+        }
+    });
 };
 
 //export
