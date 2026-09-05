@@ -14,7 +14,7 @@ const setLocalStorage = (projectID) => {
 };
 
 
-//retreaves local storage
+//retrieves local storage
 const loadLocalStorage = (storageID) => {
     const projectData =  JSON.parse(localStorage.getItem(storageID));
     ProjectManager.createProject(projectData.name, projectData.id);
