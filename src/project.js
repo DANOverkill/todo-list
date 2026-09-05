@@ -8,12 +8,12 @@ const Project = (name, existingID) => {
     const id = createID(existingID);
 
     //Todo methods
-    const addTodo = (name, dueDate, info) => {
+    const addTodo = (name, dueDate, info, existingID) => {
         if (info === undefined) {
             let noInfo = '';
-            todoList.push(Todo(name, dueDate, noInfo));
+            todoList.push(Todo(name, dueDate, noInfo, existingID));
         } else {
-           todoList.push(Todo(name, dueDate, info));
+           todoList.push(Todo(name, dueDate, info, existingID));
         };
     }; 
 
