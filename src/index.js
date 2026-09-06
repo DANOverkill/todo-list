@@ -41,7 +41,7 @@ const editProjectForm_container = document.querySelector('#editProjectForm-conta
 const loadPage = () => {
     let storageLength = localStorage.length;
     if (storageLength === 0) {
-        ProjectManager.createProject('Exemple Project', 0);
+        ProjectManager.createProject('Example Project', 0);
         ProjectManager.
         getProject(0).
         addTodo('Example Todo', 
