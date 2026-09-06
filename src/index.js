@@ -3,7 +3,7 @@ import "./style.css";
 // import Project from "./project.js";
 // import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
-// import { format, set, toDate } from "date-fns";
+import { format, set, toDate } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 import { 
         drawProjects, 
@@ -34,14 +34,21 @@ const projectTodoColumn = document.querySelector('#projectTodo-column');
 const newProject = document.querySelector('#newProject');
 const addTodoForm = document.querySelector('#addTodo-form');
 const editTodoForm_container = document.querySelector('#editTodoForm-container');
-const projectContent = document.querySelector('#project_content');
+// const projectContent = document.querySelector('#project_content');
 const editProjectForm_container = document.querySelector('#editProjectForm-container');
 
 //--------- Local Memory check -------------//
 const loadPage = () => {
     let storageLength = localStorage.length;
     if (storageLength === 0) {
-        return;
+        ProjectManager.createProject('Exemple Project', 0);
+        ProjectManager.
+        getProject(0).
+        addTodo('Example Todo', 
+            format(new Date(), 'MM-dd-yyyy'), 
+            `This is where you create your todo items. 
+            Once you have new Projects, you can delete 
+            this and it will no longer show in your page`);
     }
     for (let i = 0; i < storageLength; i++) {
         let storageID = localStorage.key(i);
