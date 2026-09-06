@@ -1,5 +1,5 @@
 import createID from "./utils/createID.js";
-import { compareAsc, format } from "date-fns";
+// import { compareAsc, format } from "date-fns";
 
 const Todo = (name, dueDate, info, existingID) => {
 

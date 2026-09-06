@@ -1,9 +1,9 @@
 //Imports
 import "./style.css";
-import Project from "./project.js";
-import Todo from "./todo.js";
+// import Project from "./project.js";
+// import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
-import { format, set, toDate } from "date-fns";
+// import { format, set, toDate } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 import { 
         drawProjects, 
@@ -16,15 +16,15 @@ import {
         } from "./domhandler.js";
 import editUpdates from "./utils/editUpdates.js";
 
-console.log("Webpack template running!");
+// console.log("Webpack template running!");
 
 //exposure for testing
-window.Project = Project;
-window.Todo = Todo;
-window.ProjectManager = ProjectManager;
-window.format = format;
-window.setLocalStorage = setLocalStorage;
-window.loadLocalStorage = loadLocalStorage;
+// window.Project = Project;
+// window.Todo = Todo;
+// window.ProjectManager = ProjectManager;
+// window.format = format;
+// window.setLocalStorage = setLocalStorage;
+// window.loadLocalStorage = loadLocalStorage;
 
 
 // =========== PAGE LOAD LOGIC =============//
@@ -76,7 +76,6 @@ projectTodoColumn.addEventListener('click', (event) => {
 projectTodoColumn.addEventListener('click', (event) => {
     const editProject = event.target.closest('#editProject');
     if (!editProject) return;
-    console.log("i got clicked");
     const projectID = Number(document.querySelector('.project-menu nav').id);
     drawEditProjectForm(projectID);
 });
@@ -128,8 +127,7 @@ projectTodoColumn.addEventListener('click', (event) => {
   const addTodo = event.target.closest('#addTodo');
   if (!addTodo) return;
     if (getComputedStyle(addTodoForm).display === 'none') {
-      console.log('clicked');
-      addTodoForm.style.display = 'block';
+        addTodoForm.style.display = 'block';
     };
 });
 
@@ -218,29 +216,3 @@ projectTodoColumn.addEventListener("change", (event) => {
         completedCheck.checked = false;
     }
 });
-
-// ***** IMPORTANT *******
-// This wont work because when pushing the loadLocalStorage into
-// ProjectsManager's projects array, we loose all our methods. 
-// ==========================
-
-// (might need to run this in a module later)
-
-// check for storage first
-// const memoryCheck = () => {
-//     const savedData = loadLocalStorage();
-    
-//     if (savedData.findIndex(index => index.id) !== -1){
-//         const projectManager = ProjectManager();
-//         const savedData = loadLocalStorage();
-//         projectManager.getProject().push(...savedData);
-
-//         return projectManager;
-//     } else {
-//         return ProjectManager();
-//     }
-// };
-// window.memoryCheck = memoryCheck; 
-
-// const projectManager = memoryCheck();
-// window.projectManager = projectManager;
