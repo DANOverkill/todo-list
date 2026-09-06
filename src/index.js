@@ -67,6 +67,7 @@ projectTodoColumn.addEventListener('click', (event) => {
     const nav = deleteProject.closest('nav');
     const projectID = Number(nav.id); 
     ProjectManager.removeProject(projectID);
+    localStorage.removeItem(projectID);
     projectTodoColumn.innerHTML = '';
     drawProjects(ProjectManager.getProject());
 });
