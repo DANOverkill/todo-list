@@ -3,7 +3,7 @@ import "./style.css";
 import Project from "./project.js";
 import Todo from "./todo.js";
 import ProjectManager from "./projectManager.js";
-import { format, toDate } from "date-fns";
+import { format, set, toDate } from "date-fns";
 import { setLocalStorage, loadLocalStorage } from "./utils/localStorage.js";
 import { 
         drawProjects, 
@@ -92,7 +92,8 @@ editProjectForm_container.addEventListener('submit', (event) => {
         return alert('You MUST name your project');
     }
     if (form.id === 'newProjectForm') {
-        ProjectManager.createProject(newProjectName);
+        const newProject = ProjectManager.createProject(newProjectName);
+        setLocalStorage(newProject.id)
         drawProjects(ProjectManager.getProject());
     } else {
         const projectID = Number(form.id);
@@ -100,6 +101,7 @@ editProjectForm_container.addEventListener('submit', (event) => {
         const newProject = { name:newProjectName };
         const updates = editUpdates(originalProject, newProject);
         ProjectManager.editProject(projectID, updates);
+        setLocalStorage(projectID);
         drawProjectMenu(projectTodoColumn, originalProject.name, projectID);
         drawTodoList(projectID);
         drawProjects(ProjectManager.getProject());
@@ -144,6 +146,7 @@ addTodoForm.addEventListener('submit', (event) => {
     const dueDate = document.getElementById('dueDate').value;
     const todoInfo = document.getElementById('todoInfo').value;
     addTodoListItem(projectId, todoName, dueDate, todoInfo)
+    setLocalStorage(projectId);
     drawTodoList(projectId);
 });
 
@@ -178,6 +181,7 @@ editTodoForm_container.addEventListener('submit', (event) => {
     const updates = editUpdates(originalTodo, newTodo);
 
     ProjectManager.getProject(Number(projectID)).editTodo(Number(todoID), updates);
+    setLocalStorage(Number(projectID));
 
     drawTodoList(Number(projectID));
 
@@ -191,6 +195,7 @@ projectTodoColumn.addEventListener('click', (event) => {
     const projectID = Number(document.querySelector('.project-menu nav').id);
     const todoItem = deleteTodo.closest('.todo-item');
     ProjectManager.getProject(projectID).removeTodo(Number(todoItem.id));
+    setLocalStorage(Number(projectID));
     drawTodoList(Number(projectID));
 });
 
@@ -205,9 +210,11 @@ projectTodoColumn.addEventListener("change", (event) => {
 
     if (completedStatus === false) {
         ProjectManager.getProject(projectID).editTodo(todoID, {completed:true});
+        setLocalStorage(Number(projectID));
         completedCheck.checked = true;
     } else {
         ProjectManager.getProject(projectID).editTodo(todoID, {completed:false});
+        setLocalStorage(Number(projectID));
         completedCheck.checked = false;
     }
 });
