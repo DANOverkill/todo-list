@@ -37,6 +37,21 @@ const editTodoForm_container = document.querySelector('#editTodoForm-container')
 const projectContent = document.querySelector('#project_content');
 const editProjectForm_container = document.querySelector('#editProjectForm-container');
 
+//--------- Local Memory check -------------//
+const loadPage = () => {
+    let storageLength = localStorage.length;
+    if (storageLength === 0) {
+        return;
+    }
+    for (let i = 0; i < storageLength; i++) {
+        let storageID = localStorage.key(i);
+        loadLocalStorage(storageID);
+    };
+    drawProjects(ProjectManager.getProject());
+};
+
+loadPage();
+
 // =========== Event Listeners =============//
 
 // --------- Projects Listeners -------------//
